@@ -1,0 +1,19 @@
+services:
+  meter_service:
+    container_name: LBS
+    restart: always
+    build:
+      context: .
+      dockerfile: LBS/Dockerfile.LBS
+    ports:
+      - 5000:5000
+    volumes:
+      - ./LBS/app:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+    networks:
+      - appNet
+networks:
+  appNet:
+    driver: bridge
